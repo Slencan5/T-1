@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page - Mô Hình Cảm Biến Độ Ẩm Chuyên Nghiệp</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2D6A4F',
+                        secondary: '#1B4965',
+                        background: '#D8F3DC',
+                        accent: '#CCFF33',
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* CSS tuỳ chỉnh để nâng cao tính thẩm mỹ */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(27, 73, 101, 0.05);
+        }
+
+        .blob-bg {
+            position: absolute;
+            filter: blur(100px);
+            z-index: 0;
+            border-radius: 50%;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* 
+           Card Application Hover Effect 
+           Giúp đẩy nội dung lên trên và hiện description gradient 
+        */
+        .app-card-group:hover .app-content {
+            transform: translateY(0);
+        }
+
+        .app-card-group:hover .app-desc {
+            opacity: 1;
+            max-height: 100px;
+            margin-top: 8px;
+        }
+
+        /* Thay đổi gradient overlay cho mỗi ảnh mảng ứng dụng */
+        .color-overlay-1 {
+            background: linear-gradient(0deg, rgba(27, 73, 101, 0.9) 0%, rgba(27, 73, 101, 0.2) 100%);
+        }
+
+        .color-overlay-2 {
+            background: linear-gradient(0deg, rgba(45, 106, 79, 0.9) 0%, rgba(45, 106, 79, 0.2) 100%);
+        }
+
+        .color-overlay-3 {
+            background: linear-gradient(0deg, rgba(27, 73, 101, 0.9) 0%, rgba(45, 106, 79, 0.2) 100%);
+        }
+
+        .color-overlay-4 {
+            background: linear-gradient(0deg, rgba(45, 106, 79, 0.9) 0%, rgba(27, 73, 101, 0.2) 100%);
+        }
+    </style>
+</head>
+
+<body class="antialiased text-secondary selection:bg-accent selection:text-secondary relative overflow-x-hidden">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-header transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center gap-3">
+                    <i class="fa-solid fa-leaf text-primary text-2xl"></i>
+                    <span class="font-heading font-black text-xl lg:text-2xl text-secondary uppercase tracking-tighter">
+                        Tổ<span class="text-primary"> 1</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#features"
+                        class="font-body font-medium text-secondary/70 hover:text-primary transition-colors">Tính
+                        năng</a>
+                    <a href="#applications"
+                        class="font-body font-medium text-secondary/70 hover:text-primary transition-colors">Ứng
+                        dụng</a>
+                    <a href="#how-it-works"
+                        class="font-body font-medium text-secondary/70 hover:text-primary transition-colors">Cách hoạt
+                        động</a>
+                </nav>
+
+                <div class="hidden md:flex">
+                    <a href="#cta"
+                        class="bg-accent text-secondary font-heading font-bold px-6 py-2.5 rounded-full hover:shadow-[0_8px_20px_rgba(204,255,51,0.3)] hover:-translate-y-0.5 transition-all">Khám
+                        phá ngay</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn"
+                    class="md:hidden text-2xl text-secondary hover:text-primary transition-colors focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu"
+                class="md:hidden hidden bg-white border-t border-gray-100 shadow-2xl rounded-b-2xl absolute top-full left-0 w-full px-4 pt-2 pb-6 flex-col gap-2 transition-all duration-300 transform origin-top opacity-0 -translate-y-4 z-50">
+                <a href="#features"
+                    class="block mobile-link font-body font-semibold text-secondary hover:text-primary py-3 border-b border-gray-50">Tính
+                    năng</a>
+                <a href="#applications"
+                    class="block mobile-link font-body font-semibold text-secondary hover:text-primary py-3 border-b border-gray-50">Ứng
+                    dụng</a>
+                <a href="#how-it-works"
+                    class="block mobile-link font-body font-semibold text-secondary hover:text-primary py-3 mb-2">Cách
+                    hoạt
+                    động</a>
+                <a href="#cta"
+                    class="block mobile-link bg-accent text-secondary font-heading font-bold text-center py-3 rounded-full hover:shadow-lg transition-all w-full mt-2">Khám
+                    phá ngay</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-background/30 overflow-hidden">
+        <!-- Blobs Design -->
+        <div class="blob-bg bg-primary w-[500px] h-[500px] top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="blob-bg bg-accent w-[400px] h-[400px] bottom-0 right-0 translate-x-1/3 translate-y-1/3 opacity-30">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+
+                <!-- Hero Content -->
+                <div class="text-center lg:text-left">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-white mb-6 shadow-sm">
+                        <span class="flex h-2.5 w-2.5 relative">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full bg-primary h-2.5 w-2.5"></span>
+                        </span>
+                        <span class="font-body text-xs font-semibold text-primary uppercase tracking-wider">Giải pháp
+                            Nông nghiệp 4.0</span>
+                    </div>
+
+                    <h1
+                        class="text-5xl sm:text-6xl lg:text-7xl font-heading font-black text-secondary uppercase leading-[1.05] tracking-tighter mb-6">
+                        MÔ HÌNH CẢM BIẾN <br>
+                        <span class="text-primary">ĐỘ ẨM CHO CÂY TRỒNG</span>
+                    </h1>
+
+                    <p
+                        class="text-lg sm:text-xl text-secondary/80 font-body mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Chăm sóc mảng xanh bằng ngôn ngữ của công nghệ. Tưới đúng lúc, đo chuẩn lượng, mang lại sức sống
+                        bền bỉ và tiết kiệm thời gian tuyệt đối.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#cta"
+                            class="inline-flex justify-center items-center gap-2 bg-accent text-secondary font-heading font-bold text-[17px] px-8 py-4 rounded-full hover:shadow-[0_10px_30px_rgba(204,255,51,0.5)] hover:-translate-y-1 transition-all">
+                            Khám phá ngay <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#how-it-works"
+                            class="inline-flex justify-center items-center gap-2 bg-white text-secondary font-heading font-bold text-[17px] px-8 py-4 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors">
+                            Xem quy trình <i class="fa-regular fa-circle-play"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image Area -->
+                <div
+                    class="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square max-w-lg mx-auto lg:max-w-none perspective-1000">
+                    <div
+                        class="w-full h-full bg-white/40 p-4 rounded-[2.5rem] backdrop-blur-md border border-white/60 shadow-2xl transform transition-transform duration-700 hover:rotate-2 hover:scale-[1.02]">
+                        <div
+                            class="w-full h-full bg-background/50 rounded-[2rem] border-2 border-dashed border-primary/20 flex flex-col items-center justify-center relative overflow-hidden group">
+                            <!-- Gradient overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
+
+                            <!-- Placeholder Illustration -->
+                            <div class="relative z-10 text-center">
+                                <div
+                                    class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl shadow-primary/10 group-hover:-translate-y-4 transition-transform duration-500">
+                                    <i class="fa-solid fa-microchip text-4xl text-primary"></i>
+                                </div>
+                                <h3 class="font-heading font-bold text-secondary text-2xl mb-2">Ảnh / Khối Thiết bị</h3>
+                                <p class="font-body text-secondary/60 text-sm max-w-xs mx-auto">Bạn có thể chèn ảnh sản
+                                    phẩm thực tế background trong suốt vào đây</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-6 md:-left-12 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-bounce"
+                        style="animation-duration: 3s;">
+                        <div
+                            class="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-secondary text-xl font-bold">
+                            99%
+                        </div>
+                        <div>
+                            <p class="font-heading font-bold text-secondary text-[15px]">Độ chính xác</p>
+                            <p class="font-body text-secondary/60 text-xs">Phản hồi theo thời gian thực</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. FEATURES SECTION (TÍNH NĂNG CỐT LÕI) -->
+    <section id="features" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <div class="text-center mb-16 lg:mb-20">
+                <span class="font-body text-primary font-bold uppercase tracking-[2px] text-sm mb-3 block">Giá trị cốt
+                    lõi</span>
+                <h2 class="text-secondary font-heading font-black text-4xl md:text-5xl uppercase tracking-tighter mb-4">
+                    Giải pháp <span class="text-primary">Tối Ưu</span>
+                </h2>
+                <p class="text-secondary/70 font-body text-lg max-w-2xl mx-auto">Thiết kế công thái học đi kèm với bộ
+                    não phân tích sắc bén, giúp hệ thống hoạt động bền bỉ và chính xác nhất.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 gap-y-12">
+                <!-- Feature 1 -->
+                <div
+                    class="bg-white group p-8 rounded-3xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:shadow-[0_20px_40px_rgba(27,73,101,0.06)]">
+                    <div
+                        class="w-16 h-16 rounded-[1rem] bg-background flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary transition-all duration-300 shadow-sm">
+                        <i
+                            class="fa-solid fa-crosshairs text-3xl text-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold text-secondary mb-3">Cảm biến chuẩn xác</h3>
+                    <p class="text-secondary/75 font-body leading-relaxed">Đo lường độ ẩm trong lòng đất phân tích đến
+                        99%. Thu thập dữ liệu liên tục 24/7 để máy bơm không bao giờ hoạt động sai lệch.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div
+                    class="bg-white group p-8 rounded-3xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:shadow-[0_20px_40px_rgba(27,73,101,0.06)] relative overflow-hidden">
+                    <!-- Accent line top -->
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-accent transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500">
+                    </div>
+                    <div
+                        class="w-16 h-16 rounded-[1rem] bg-background flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-accent transition-all duration-300 shadow-sm">
+                        <i class="fa-solid fa-feather text-3xl text-primary transition-colors"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold text-secondary mb-3">Nhỏ gọn & Nhẹ</h3>
+                    <p class="text-secondary/75 font-body leading-relaxed">Sở hữu kích thước cực kỳ khiêm tốn. Có thể
+                        cắm giấu vào bất kỳ chậu cây kiểng nào mà không hề ảnh hưởng đến thẩm mỹ và bộ rễ.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div
+                    class="bg-white group p-8 rounded-3xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:shadow-[0_20px_40px_rgba(27,73,101,0.06)]">
+                    <div
+                        class="w-16 h-16 rounded-[1rem] bg-background flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-secondary transition-all duration-300 shadow-sm">
+                        <i
+                            class="fa-solid fa-hand-holding-droplet text-3xl text-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold text-secondary mb-3">Tiết kiệm 40% nước</h3>
+                    <p class="text-secondary/75 font-body leading-relaxed">Mô hình chỉ cấp nước khi cây thực sự bắt đầu
+                        "khát". Loại bỏ triệt để vấn đề tưới tràn lan gây úng rễ và lãng phí nguồn tài nguyên.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. APPLICATIONS SECTION (TRỌNG TÂM - ỨNG DỤNG THỰC TẾ) -->
+    <section id="applications" class="py-24 bg-secondary relative overflow-hidden">
+        <!-- Decor blobs for dark background -->
+        <div
+            class="blob-bg bg-primary w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 lg:mb-20">
+                <span class="font-body text-accent font-bold uppercase tracking-[2px] text-sm mb-3 block">Tiềm
+                    năng</span>
+                <h2 class="text-white font-heading font-black text-4xl md:text-5xl uppercase tracking-tighter mb-4">
+                    Ứng Dụng <span class="text-accent">Thực Tế</span>
+                </h2>
+                <p class="text-white/70 font-body text-lg max-w-3xl mx-auto">Không chỉ là món đồ chơi công nghệ, thiết
+                    bị này mở ra kỉ nguyên số hóa cảnh quan xanh từ nhà cửa đến vĩ mô.</p>
+            </div>
+
+            <!-- CSS Grid for Application Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Application 1 -->
+                <div
+                    class="app-card-group group relative rounded-[2rem] overflow-hidden aspect-square lg:aspect-[3/4] cursor-pointer shadow-2xl bg-white/5">
+                    <!-- Ảnh nền giả định (Dùng màu nền tạo cảm giác chân thực) -->
+                    <div
+                        class="absolute inset-0 bg-[#cbd5e1] bg-cover bg-center transition-transform duration-700 group-hover:scale-110 flex items-center justify-center">
+                        <i class="fa-solid fa-house-chimney text-8xl text-white/50"></i>
+                    </div>
+
+                    <div
+                        class="absolute inset-0 color-overlay-1 transition-opacity duration-300 group-hover:-translate-y-4">
+                    </div>
+
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                        <div class="app-content transform translate-y-6 transition-transform duration-500 ease-out">
+                            <div
+                                class="w-12 h-12 rounded-full bg-accent text-secondary flex items-center justify-center text-xl mb-4 shadow-lg">
+                                <i class="fa-solid fa-couch"></i>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-white mb-0 leading-tight">Gia đình thông
+                                minh</h3>
+                            <p
+                                class="app-desc opacity-0 max-h-0 overflow-hidden text-white/80 font-body text-sm leading-relaxed transition-all duration-500 ease-out">
+                                Chăm sóc cây cảnh, ban công tự động ngay cả khi bạn vắng nhà đi du lịch hay công tác dài
+                                ngày.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application 2 -->
+                <div
+                    class="app-card-group group relative rounded-[2rem] overflow-hidden aspect-square lg:aspect-[3/4] cursor-pointer shadow-2xl bg-white/5 lg:-translate-y-6">
+                    <div
+                        class="absolute inset-0 bg-[#94a3b8] bg-cover bg-center transition-transform duration-700 group-hover:scale-110 flex items-center justify-center">
+                        <i class="fa-solid fa-tractor text-8xl text-white/50"></i>
+                    </div>
+                    <div
+                        class="absolute inset-0 color-overlay-2 transition-opacity duration-300 group-hover:-translate-y-4">
+                    </div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                        <div class="app-content transform translate-y-6 transition-transform duration-500 ease-out">
+                            <div
+                                class="w-12 h-12 rounded-full bg-white text-primary flex items-center justify-center text-xl mb-4 shadow-lg">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-white mb-0 leading-tight">Nông nghiệp công
+                                nghệ cao</h3>
+                            <p
+                                class="app-desc opacity-0 max-h-0 overflow-hidden text-white/80 font-body text-sm leading-relaxed transition-all duration-500 ease-out">
+                                Tối ưu hóa hệ thống tưới cho nhà kính và trang trại quy mô lớn, giám sát sinh thái đất
+                                diện rộng.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application 3 -->
+                <div
+                    class="app-card-group group relative rounded-[2rem] overflow-hidden aspect-square lg:aspect-[3/4] cursor-pointer shadow-2xl bg-white/5">
+                    <div
+                        class="absolute inset-0 bg-[#e2e8f0] bg-cover bg-center transition-transform duration-700 group-hover:scale-110 flex items-center justify-center">
+                        <i class="fa-solid fa-city text-8xl text-secondary/30"></i>
+                    </div>
+                    <div
+                        class="absolute inset-0 color-overlay-3 transition-opacity duration-300 group-hover:-translate-y-4">
+                    </div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                        <div class="app-content transform translate-y-6 transition-transform duration-500 ease-out">
+                            <div
+                                class="w-12 h-12 rounded-full bg-accent text-secondary flex items-center justify-center text-xl mb-4 shadow-lg">
+                                <i class="fa-solid fa-building"></i>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-white mb-0 leading-tight">Kiến trúc xanh đô
+                                thị</h3>
+                            <p
+                                class="app-desc opacity-0 max-h-0 overflow-hidden text-white/80 font-body text-sm leading-relaxed transition-all duration-500 ease-out">
+                                Giải pháp duy trì sinh khí và hệ mảng xanh cho các tòa nhà văn phòng và các công viên
+                                đứng (Vertical Gardens).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application 4 -->
+                <div
+                    class="app-card-group group relative rounded-[2rem] overflow-hidden aspect-square lg:aspect-[3/4] cursor-pointer shadow-2xl bg-white/5 lg:-translate-y-6">
+                    <div
+                        class="absolute inset-0 bg-[#64748b] bg-cover bg-center transition-transform duration-700 group-hover:scale-110 flex items-center justify-center">
+                        <i class="fa-solid fa-flask text-8xl text-white/50"></i>
+                    </div>
+                    <div
+                        class="absolute inset-0 color-overlay-4 transition-opacity duration-300 group-hover:-translate-y-4">
+                    </div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                        <div class="app-content transform translate-y-6 transition-transform duration-500 ease-out">
+                            <div
+                                class="w-12 h-12 rounded-full bg-white text-secondary flex items-center justify-center text-xl mb-4 shadow-lg">
+                                <i class="fa-solid fa-microscope"></i>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-white mb-0 leading-tight">Nghiên cứu & Giáo
+                                dục</h3>
+                            <p
+                                class="app-desc opacity-0 max-h-0 overflow-hidden text-white/80 font-body text-sm leading-relaxed transition-all duration-500 ease-out">
+                                Công cụ trực quan hỗ trợ các thí nghiệm sinh học, thu thập dữ liệu đất đai để giảng dạy
+                                môi trường.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. HOW IT WORKS SECTION (QUY TRÌNH KÉP) -->
+    <section id="how-it-works" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-secondary font-heading font-black text-4xl md:text-5xl uppercase tracking-tighter mb-4">
+                    Quy Trình <span class="text-primary">Đơn Giản</span>
+                </h2>
+                <p class="text-secondary/70 font-body text-lg max-w-xl mx-auto">Cách thức hoạt động theo thuật toán phản
+                    xạ "Nếu - Thì", mang lại hiệu quả logic và triệt để.</p>
+            </div>
+
+            <!-- 2-Branch Flow Design -->
+            <div class="relative max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+
+                    <!-- LUỒNG 1: ĐẤT ẨM (KHÔNG NƯỚC) -->
+                    <div class="bg-gray-50/50 p-6 rounded-3xl border border-gray-100 relative">
+                        <div
+                            class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-6 py-2 rounded-full border border-gray-200 shadow-sm font-heading font-bold text-primary flex items-center gap-2">
+                            <i class="fa-solid fa-droplet-slash"></i> Luồng 1: Không cần tưới
+                        </div>
+
+                        <!-- Step 1.1 -->
+                        <div class="mt-8 text-center relative mb-12">
+                            <div
+                                class="hidden md:block absolute top-[130px] left-[50%] w-[2px] h-12 border-l-2 border-dashed border-gray-300">
+                                <div class="absolute -bottom-1.5 -left-1.5 text-gray-300 text-xs"><i
+                                        class="fa-solid fa-chevron-down"></i></div>
+                            </div>
+
+                            <!-- Ảnh minh hoạ 1 -->
+                            <div
+                                class="w-full bg-gray-100 rounded-2xl mb-3 border border-gray-200 overflow-hidden relative shadow-sm group">
+                                <img src="datuoc.jpg" alt="Cảm biến đo đất ẩm" class="w-full h-auto object-contain">
+                                <div class="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
+                                    <i class="fa-regular fa-image text-3xl mb-2"></i>
+                                </div>
+                            </div>
+
+                            <div
+                                class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm border border-gray-100 z-10 relative">
+                                <i class="fa-solid fa-satellite-dish text-primary"></i>
+                            </div>
+                            <h3 class="text-lg font-heading font-bold text-secondary mb-2">1. Cảm biến báo Ẩm</h3>
+                            <p class="text-secondary/70 font-body text-sm px-4">Độ ẩm đất đang ở mức lý tưởng. Dữ liệu
+                                báo về vi điều khiển.</p>
+                        </div>
+
+                        <!-- Step 1.2 -->
+                        <div class="text-center relative">
+                            <!-- Ảnh minh hoạ 2 -->
+                            <div
+                                class="w-full bg-gray-100 rounded-2xl mb-3 border border-gray-200 overflow-hidden relative shadow-sm group">
+                                <img src="ngungchay.jpg" alt="Ngắt máy bơm" class="w-full h-auto object-contain">
+                                <div class="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
+                                    <i class="fa-regular fa-image text-3xl mb-2"></i>
+                                </div>
+                            </div>
+
+                            <div
+                                class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm border border-gray-100 z-10 relative">
+                                <i class="fa-solid fa-circle-check text-primary"></i>
+                            </div>
+                            <h3 class="text-lg font-heading font-bold text-secondary mb-2">2. Ngắt máy bơm</h3>
+                            <p class="text-secondary/70 font-body text-sm px-4">Hệ thống duy trì trạng thái <b>TẮT</b>.
+                                Tiết kiệm điện nước tối đa.</p>
+                        </div>
+                    </div>
+
+                    <!-- LUỒNG 2: ĐẤT KHÔ (CÓ NƯỚC) -->
+                    <div class="bg-gray-50/50 p-6 rounded-3xl border border-gray-100 relative">
+                        <div
+                            class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-6 py-2 rounded-full border border-gray-200 shadow-sm font-heading font-bold text-secondary flex items-center gap-2">
+                            <i class="fa-solid fa-droplet text-accent"></i> Luồng 2: Có nước tưới
+                        </div>
+
+                        <!-- Step 2.1 -->
+                        <div class="mt-8 text-center relative mb-12">
+                            <div
+                                class="hidden md:block absolute top-[130px] left-[50%] w-[2px] h-12 border-l-2 border-dashed border-gray-300">
+                                <div class="absolute -bottom-1.5 -left-1.5 text-gray-300 text-xs"><i
+                                        class="fa-solid fa-chevron-down"></i></div>
+                            </div>
+
+                            <!-- Ảnh minh hoạ 3 -->
+                            <div
+                                class="w-full bg-gray-100 rounded-2xl mb-3 border border-gray-200 overflow-hidden relative shadow-sm group">
+                                <img src="koconuoc.jpg" alt="Cảm biến đo đất khô" class="w-full h-auto object-contain">
+                                <div
+                                    class="absolute inset-0 flex flex-col items-center justify-center text-gray-400 pointer-events-none">
+                                    <i class="fa-regular fa-image text-3xl mb-2"></i>
+
+                                </div>
+                            </div>
+
+                            <div
+                                class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm border border-gray-100 z-10 relative">
+                                <i class="fa-solid fa-triangle-exclamation text-accent"></i>
+                            </div>
+                            <h3 class="text-lg font-heading font-bold text-secondary mb-2">1. Báo động Khô hạn</h3>
+                            <p class="text-secondary/70 font-body text-sm px-4">Cảm biến phát hiện đất thiếu nước trầm
+                                trọng. Gửi tín hiệu khẩn cấp.</p>
+                        </div>
+
+                        <!-- Step 2.2 -->
+                        <div class="text-center relative">
+                            <!-- Ảnh minh hoạ 4 -->
+                            <div
+                                class="w-full bg-gray-100 rounded-2xl mb-3 border border-gray-200 overflow-hidden relative shadow-sm group">
+                                <img src="chaykhikhongconuoc.jpg" alt="Bơm nước" class="w-full h-auto object-contain">
+                                <div
+                                    class="absolute inset-0 flex flex-col items-center justify-center text-gray-400 pointer-events-none">
+                                    <i class="fa-solid fa-pump-water text-3xl mb-2"></i>
+                                </div>
+                            </div>
+
+                            <div
+                                class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm border border-gray-100 z-10 relative">
+                                <i class="fa-solid fa-faucet-drip text-secondary"></i>
+                            </div>
+                            <h3 class="text-lg font-heading font-bold text-secondary mb-2">2. Kích hoạt Tưới</h3>
+                            <p class="text-secondary/70 font-body text-sm px-4">Máy bơm lập tức <b>BẬT</b> tưới nước bù
+                                đắp sự sống cho cây.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CTA SECTION -->
+    <section id="cta" class="py-24 bg-primary relative overflow-hidden">
+        <div
+            class="blob-bg bg-background w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10">
+        </div>
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+            <h2
+                class="text-white font-heading font-black text-4xl md:text-5xl lg:text-6xl uppercase tracking-tighter mb-6">
+                Chuyển đổi <br><span class="text-accent">Mảng Xanh Ngay Hôm Nay</span>
+            </h2>
+            <p class="text-white/80 font-body text-xl md:text-2xl mb-12 max-w-2xl mx-auto">Đồng hành cùng công nghệ,
+                giúp bạn quản lý nông nghiệp dễ dàng và tiện lợi hơn bao giờ hết.</p>
+            <button
+                class="bg-accent text-secondary font-heading font-bold text-lg md:text-xl px-12 py-5 rounded-full hover:shadow-[0_15px_40px_rgba(204,255,51,0.4)] hover:scale-105 transition-all text-center">
+                Khám phá ngay sản phẩm
+            </button>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER -->
+    <footer class="bg-[#0f2a3a] pt-16 pb-8 border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16 relative z-10">
+
+                <div class="col-span-1 lg:col-span-2">
+                    <a href="#" class="flex items-center gap-2 mb-6">
+                        <i class="fa-solid fa-leaf text-primary text-3xl"></i>
+                        <span class="font-heading font-black text-3xl text-white uppercase tracking-tighter">Eco<span
+                                class="text-primary">Sense</span></span>
+                    </a>
+                    <p class="text-white/60 font-body max-w-sm mb-6 leading-relaxed text-sm">
+                        Dự án tiên phong về giải pháp tưới thông minh sử dụng vi điều khiển và cảm biến độ ẩm. Thay đổi
+                        tư duy chăm sóc cây xanh truyền thống.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/80 hover:bg-accent hover:text-secondary transition-colors"><i
+                                class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/80 hover:bg-accent hover:text-secondary transition-colors"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/80 hover:bg-accent hover:text-secondary transition-colors"><i
+                                class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold text-white mb-6 uppercase tracking-wider text-sm">Điều hướng</h4>
+                    <ul class="flex flex-col gap-4 text-sm text-white/60 font-body">
+                        <li><a href="#features" class="hover:text-accent transition-colors">Tính năng thiết bị</a></li>
+                        <li><a href="#applications" class="hover:text-accent transition-colors">Giải pháp hiện thực</a>
+                        </li>
+                        <li><a href="#how-it-works" class="hover:text-accent transition-colors">Quy trình IOT</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold text-white mb-6 uppercase tracking-wider text-sm">Liên hệ Dự án
+                    </h4>
+                    <ul class="flex flex-col gap-4 text-sm text-white/60 font-body">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope mt-1 text-primary"></i>
+                            <span>contact@ecosense.example.com</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone mt-1 text-primary"></i>
+                            <span>hotline hỗ trợ kỹ thuật +84</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40 font-body">
+                <p>&copy; 2026 Dự án Cảm biến độ ẩm cây trồng. Nghiên cứu & Thiết kế độc quyền.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCROLL SCRIPT -->
+    <script>
+        // Header Scroll Shadow
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-lg', 'bg-white/100');
+                navbar.classList.remove('bg-transparent', 'glass-header'); // Bỏ kính mờ để hiển thị trắng tinh
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-white/100');
+                navbar.classList.add('glass-header');
+            }
+        });
+
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                // Mở Menu
+                mobileMenu.classList.remove('hidden');
+                // Sử dụng Timeout nhỏ để đảm bảo CSS animation chạy mượt mà
+                setTimeout(() => {
+                    mobileMenu.classList.remove('opacity-0', '-translate-y-4');
+                    mobileMenu.classList.add('opacity-100', 'translate-y-0');
+                }, 10);
+                // Đổi icon sang nút X
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            } else {
+                // Đóng Menu
+                mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+                mobileMenu.classList.add('opacity-0', '-translate-y-4');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300); // 300ms bằng với duration Tailwind class (duration-300)
+                // Đổi icon lại thành Bars
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        // Tự động đóng menu khi bấm vào bất kỳ link nào trên mobile
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (isMenuOpen) toggleMenu();
+            });
+        });
+    </script>
+</body>
+
+</html>
